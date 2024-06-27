@@ -14,6 +14,7 @@ public class TurretController : MonoBehaviour
     public float damping = 0.5f;
     public float response = 1.0f;
     public float angleMulti = 1.0f; // Multiplier to speed up the rotation
+    public float shotForce = -1.0f;
 
     private TankControls controls;
     private CannonFXController cannonFXController;
@@ -134,7 +135,7 @@ public class TurretController : MonoBehaviour
             Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
             // Add external force to the body animation controller
-            bodyAnimationController.AddExternalForce(firePoint.forward * -1f);
+            bodyAnimationController.AddExternalForce(firePoint.forward * shotForce);
 
             // Play the muzzle flash particle effect
             if (cannonFXController != null)

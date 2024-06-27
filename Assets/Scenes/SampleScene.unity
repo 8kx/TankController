@@ -1384,6 +1384,10 @@ PrefabInstance:
       propertyPath: muzzleFlashEffect
       value: 
       objectReference: {fileID: 1361754164}
+    - target: {fileID: 2778350707597196027, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
+      propertyPath: shotForce
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 2946764764857307453, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.ctime0
       value: 4241
@@ -1499,6 +1503,14 @@ PrefabInstance:
     - target: {fileID: 6358633860672806394, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
       propertyPath: m_Name
       value: Tank_Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171474794322668712, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171474794322668712, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
