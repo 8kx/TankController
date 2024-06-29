@@ -4,8 +4,12 @@ public class AnimateTankTracks : MonoBehaviour
 {
     public TankTracks tankTracks;
     public TankMovement tankMovement;
+    public ParticleSystem[] trackSprayEffects;
     public float baseSpeed = 1.0f;
     public float trackRadius = 1.0f; // The radius from the center of the tank to the tracks
+
+    public float emissionRateMultiplier = 10f; // Multiplier for emission rate
+    public float speedMultiplier = 0.5f; // Multiplier for particle speed
 
     private float leftOffset = 0f;
     private float rightOffset = 0f;
@@ -78,6 +82,21 @@ public class AnimateTankTracks : MonoBehaviour
                 trackSegments[i].transform.position = rightTrackPoint + rightOffsetPosition;
                 trackSegments[i].transform.rotation = Quaternion.LookRotation(tankTracks.newSpline.GetDirection(rightT));
             }
+        }
+
+        UpdateTrackSprayEffects(speed);
+    }
+
+    private void UpdateTrackSprayEffects(float speed)
+    {
+        foreach (var particleSystem in trackSprayEffects)
+        {
+            var emission = particleSystem.emission;
+            var main = particleSystem.main;
+
+            // Adjust the emission rate and speed based on the animation speed and multipliers
+            emission.rateOverTime = Mathf.Abs(speed) * emissionRateMultiplier;
+            main.startSpeed = Mathf.Abs(speed) * speedMultiplier;
         }
     }
 }
