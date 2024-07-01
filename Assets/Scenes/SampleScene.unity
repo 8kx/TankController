@@ -696,21 +696,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1152697556493081381, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
-      propertyPath: emissionRateMultiplier
-      value: 20
+    - target: {fileID: 1030839968656474615, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
+      propertyPath: moveSize
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1152697556493081381, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
-      propertyPath: trackSprayEffects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1152697556493081381, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
-      propertyPath: trackSprayEffects.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1152697556493081381, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
-      propertyPath: trackSprayEffects.Array.data[3]
-      value: 
+    - target: {fileID: 1030839968656474615, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
+      propertyPath: moveEmissionRate
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3400305915749803757, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -757,9 +749,7 @@ PrefabInstance:
       value: Tank_Root
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8460520999179130650, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
-    - {fileID: 2202129066785691972, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee290fe8844f41c4aa82c0165e7336e2, type: 3}
