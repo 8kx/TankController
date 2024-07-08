@@ -208,8 +208,8 @@ Vector2Int SelectNextCell()
     {
         if (tile.spriteIndex >= 0 && tile.spriteIndex < tileManager.tileSprites.Length)
         {
-            Vector3 scaledPosition = new Vector3(position.x * 2.5f, position.y * 2.5f, 0);
-            GameObject tileInstance = Instantiate(tilePrefab, scaledPosition, Quaternion.identity);
+            Vector3 scaledPosition = new Vector3(position.x * 1.275f, 0, position.y * 1.275f);
+            GameObject tileInstance = Instantiate(tilePrefab, scaledPosition, Quaternion.AngleAxis(90, Vector3.right));
             SpriteRenderer spriteRenderer = tileInstance.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = tileManager.tileSprites[tile.spriteIndex]; // Set the sprite based on the sprite index
         }
@@ -228,8 +228,8 @@ Vector2Int SelectNextCell()
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                Vector3 position = new Vector3(x * 2.5f, y * 2.5f, 0);
-                Gizmos.DrawWireCube(position, new Vector3(2.5f, 2.5f, 0));
+                Vector3 position = new Vector3(x * 1.275f, 0, y * 1.275f);
+                Gizmos.DrawWireCube(position, new Vector3(1.275f, 0, 1.275f));
 
                 // Draw the sprite indices for each cell's possible tiles
                 if (possibleTiles != null && possibleTiles.ContainsKey(new Vector2Int(x, y)))

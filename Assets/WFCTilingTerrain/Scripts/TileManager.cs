@@ -96,12 +96,15 @@ public class TileManager : MonoBehaviour
 
         switch (direction)
         {
+            //I had to flip top and bottom to make it work
             case "top":
-                return tile1.edges[0] == tile2.edges[2];
+                return tile1.edges[2] == tile2.edges[0];
+                //return tile1.edges[0] == tile2.edges[2];
             case "right":
                 return tile1.edges[1] == tile2.edges[3];
             case "bottom":
-                return tile1.edges[2] == tile2.edges[0];
+                return tile1.edges[0] == tile2.edges[2];
+                //return tile1.edges[2] == tile2.edges[0];
             case "left":
                 return tile1.edges[3] == tile2.edges[1];
             default:
