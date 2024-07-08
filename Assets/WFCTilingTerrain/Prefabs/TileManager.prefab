@@ -44,5 +44,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537cad381ea41ce42ae49429907523cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSprites: []
-  tiles: []
+  tileSprites:
+  - {fileID: -1619975655, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -238458763, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: 1234834995, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -687956696, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -1518125733, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: 951073472, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -497647783, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -431066136, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -1694797104, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: 690616938, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -582234027, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: -487397086, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: 424218180, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  - {fileID: 167437696, guid: 98bb44b166de5ba4d85feed4d0fbcb81, type: 3}
+  tiles:
+  - edges:
+    - mud,mud
+    - mud,mud
+    - mud,mud
+    - mud,mud
+    spriteIndex: 0
+  - edges:
+    - grass,grass
+    - grass,grass
+    - grass,grass
+    - grass,grass
+    spriteIndex: 1
+  - edges:
+    - mud,mud
+    - mud,grass
+    - grass,grass
+    - mud,grass
+    spriteIndex: 2
+  - edges:
+    - grass,grass
+    - grass,mud
+    - mud,mud
+    - grass,mud
+    spriteIndex: 3
+  - edges:
+    - mud,grass
+    - grass,grass
+    - mud,grass
+    - mud,mud
+    spriteIndex: 4
+  - edges:
+    - grass,mud
+    - mud,mud
+    - grass,mud
+    - grass,grass
+    spriteIndex: 5
+  - edges:
+    - grass,grass
+    - grass,grass
+    - mud,grass
+    - grass,mud
+    spriteIndex: 6
+  - edges:
+    - grass,grass
+    - grass,mud
+    - grass,mud
+    - grass,grass
+    spriteIndex: 7
+  - edges:
+    - grass,mud
+    - mud,grass
+    - grass,grass
+    - grass,grass
+    spriteIndex: 8
+  - edges:
+    - mud,grass
+    - grass,grass
+    - grass,grass
+    - mud,grass
+    spriteIndex: 9
+  - edges:
+    - mud,mud
+    - mud,mud
+    - grass,mud
+    - mud,grass
+    spriteIndex: 10
+  - edges:
+    - mud,mud
+    - mud,grass
+    - mud,grass
+    - mud,mud
+    spriteIndex: 11
+  - edges:
+    - mud,grass
+    - grass,mud
+    - mud,mud
+    - mud,mud
+    spriteIndex: 12
+  - edges:
+    - grass,mud
+    - mud,mud
+    - mud,mud
+    - grass,mud
+    spriteIndex: 13

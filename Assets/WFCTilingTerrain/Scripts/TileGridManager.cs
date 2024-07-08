@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class TileGridManager : MonoBehaviour
 {
@@ -47,9 +48,7 @@ public class TileGridManager : MonoBehaviour
 
         while (!IsFullyCollapsed())
         {
-            Debug.Log("Collapsing next cell...");
             Vector2Int cell = SelectNextCell();
-            Debug.Log("Selected cell: " + cell);
             CollapseCell(cell);
             if (grid[cell.x, cell.y] != null)
             {
@@ -69,32 +68,49 @@ public class TileGridManager : MonoBehaviour
         return true;
     }
 
-    Vector2Int SelectNextCell()
+Vector2Int SelectNextCell()
+{
+    List<Vector2Int> uncollapsedCells = new List<Vector2Int>();
+    int minPossibilities = int.MaxValue;
+
+    // Iterate over all possible tiles to find the cell(s) with the fewest possibilities
+    foreach (var kvp in possibleTiles)
     {
-        List<Vector2Int> uncollapsedCells = new List<Vector2Int>();
-        foreach (var kvp in possibleTiles)
+        if (grid[kvp.Key.x, kvp.Key.y] == null)
         {
-            if (grid[kvp.Key.x, kvp.Key.y] == null)
+            int possibilitiesCount = kvp.Value.Count;
+
+            if (possibilitiesCount < minPossibilities)
+            {
+                minPossibilities = possibilitiesCount;
+                uncollapsedCells.Clear();
                 uncollapsedCells.Add(kvp.Key);
+            }
+            else if (possibilitiesCount == minPossibilities)
+            {
+                uncollapsedCells.Add(kvp.Key);
+            }
         }
+    }
+
+    // Randomly select one cell from those with the fewest possibilities
+    if (uncollapsedCells.Count > 0)
+    {
         return uncollapsedCells[Random.Range(0, uncollapsedCells.Count)];
     }
 
+    // Return a default value (if no uncollapsed cells are found)
+    return new Vector2Int(-1, -1);
+}
+
+
     void CollapseCell(Vector2Int cell)
     {
-        Debug.Log($"Collapsing cell at {cell}...");
-        //for each possible tile print it's index
-        foreach (Tile tile in possibleTiles[cell])
-        {
-            Debug.Log("Possible tile: " + tile.spriteIndex);
-        }
         if (possibleTiles[cell].Count > 0)
         {
             Tile selectedTile = possibleTiles[cell][Random.Range(0, possibleTiles[cell].Count)];
-            Debug.Log("Selected tile: " + selectedTile.spriteIndex);
             grid[cell.x, cell.y] = selectedTile;
             possibleTiles.Remove(cell);
-            Debug.Log($"Collapsed cell at {cell} with tile index {selectedTile.spriteIndex}");
         }
         else
         {
@@ -130,27 +146,7 @@ public class TileGridManager : MonoBehaviour
 
             while (cellsToUpdate.Count > 0 && processedCount < batchSize)
             {
-                Debug.Log($"Processing cell {cellsToUpdate.Count} remaining... Current cell: {cellsToUpdate.Peek()}");
                 Vector2Int currentCell = cellsToUpdate.Dequeue();
-
-                print ("current cell " + currentCell);
-
-                //print out the state of the grid
-                for (int i = 0; i < gridSizeX; i++)
-                {
-                    for (int j = 0; j < gridSizeY; j++)
-                    {
-                        if (grid[i, j] == null)
-                        {
-                            print ("null @ " + i + ", " + j );
-                        }
-                        else
-                        {
-                            print (grid[i, j].spriteIndex);
-                        }
-                    }
-                }
-
                 Tile currentTile = grid[currentCell.x, currentCell.y];
 
                 if (currentTile == null)
@@ -164,18 +160,8 @@ public class TileGridManager : MonoBehaviour
                     if (grid[neighbor.x, neighbor.y] == null)
                     {
                         List<Tile> neighborPossibleTiles = new List<Tile>(possibleTiles[neighbor]);
-                        int i = 0;
-                        foreach (Tile tile in possibleTiles[neighbor])
-                        {
-                            i++;
-                            Debug.Log("i = " + i);
-                            //Debug.Log($"Checking compatibility between current tile index {currentTile.spriteIndex} and {tile.spriteIndex} in direction {GetDirection(currentCell, neighbor)}");
 
-                            if (!CheckCompatibility(currentTile, tile, GetDirection(currentCell, neighbor)))
-                            {
-                                neighborPossibleTiles.Remove(tile);
-                            }
-                        }
+                        neighborPossibleTiles.RemoveAll(tile => !CheckCompatibility(currentTile, tile, GetDirection(currentCell, neighbor)));
 
                         if (neighborPossibleTiles.Count != possibleTiles[neighbor].Count)
                         {
@@ -230,6 +216,29 @@ public class TileGridManager : MonoBehaviour
         else
         {
             Debug.LogError($"Sprite index {tile.spriteIndex} is out of bounds for tile at position {position}");
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (grid == null) return;
+
+        Gizmos.color = Color.red;
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                Vector3 position = new Vector3(x * 2.5f, y * 2.5f, 0);
+                Gizmos.DrawWireCube(position, new Vector3(2.5f, 2.5f, 0));
+
+                // Draw the sprite indices for each cell's possible tiles
+                if (possibleTiles != null && possibleTiles.ContainsKey(new Vector2Int(x, y)))
+                {
+                    var possible = possibleTiles[new Vector2Int(x, y)];
+                    string indices = string.Join(", ", possible.ConvertAll(tile => tile.spriteIndex.ToString()));
+                    Handles.Label(position, indices);
+                }
+            }
         }
     }
 }
